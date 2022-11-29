@@ -1,0 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap');
+@import url('https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css');
+
+.App{
+    font-family: 'Nanum Pen Script', cursive;
+}
