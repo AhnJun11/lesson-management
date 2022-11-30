@@ -27,16 +27,16 @@ function App() {
           <Route path='/login' element={<Login/>} />
         </Routes>
 
-        <div class="d-flex flex-column flex-lg-row h-lg-full bg-surface-secondary">
+        <div className="d-flex flex-column flex-lg-row h-lg-full bg-surface-secondary">
           <Sidebar/>
-          <div class="flex-lg-1 h-screen overflow-y-lg-auto">
+          <div className="flex-lg-1 h-screen overflow-y-lg-auto">
             <Header/>
             <Routes>
               <Route path='/' element={<Membermngm/>} />
-              <Route path='/accountingManagement' element={<Accountingmngm/>} />
-              <Route path='/statisticalas' element={<Statisticalas/>} />
-              <Route path='/personnelmngm' element={<Personnelmngm/>} />
-              <Route path='/permissionsmngm' element={<Permissionsmngm/>} />
+              <Route path='accountingManagement' element={<Accountingmngm/>} />
+              <Route path='statisticalas' element={<Statisticalas/>} />
+              <Route path='personnelmngm' element={<Personnelmngm/>} />
+              <Route path='permissionsmngm' element={<Permissionsmngm/>} />
             </Routes>
           </div>
         </div>

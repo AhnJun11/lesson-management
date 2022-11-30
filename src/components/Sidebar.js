@@ -1,6 +1,24 @@
+import { useState } from 'react';
 import {Link} from 'react-router-dom';
+import {UncontrolledCollapse} from 'reactstrap';
+
 
 const Sidebar = () => {
+
+    const [isOpen , setMenu] = useState({
+      firToggle : false,
+      SecToggle : false  
+    });
+
+    const toggleMenu = (e) => {
+      const toggleSwich = e.target.ariaExpanded === "false" ? true : false;
+
+      setMenu({
+        ...isOpen,
+        [e.target.id]: toggleSwich
+      });
+    };
+
     return <nav className="navbar show navbar-vertical h-lg-screen navbar-expand-lg px-0 py-3 navbar-light bg-white border-bottom border-bottom-lg-0 border-end-lg" id="sidebar">
     <div className="container-fluid">
       {/* <!-- Toggler --> */}
@@ -52,35 +70,37 @@ const Sidebar = () => {
           </li>
           
           <li className="nav-item">
-              <Link className="nav-link" to="/Statisticalas"
+              <Link className="nav-link" to="/statisticalas"
                       role="button" aria-expanded="false"
                       aria-controls="sidebar-projects"> <i className="bi bi-file-earmark-text"></i>
                           통계 분석
               </Link>
           </li>
           <li className="nav-item">
-            <Link className="nav-link" to="#sidebar-integrations" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebar-integrations">
+            <Link className="nav-link" to="#" id="firToggle" onClick={toggleMenu} data-bs-toggle="collapse" role="button" aria-expanded={isOpen.firToggle} aria-controls="sidebar-integrations">
               <i className="bi bi-terminal"></i> 프로그램 관리
             </Link>
-            <div className="collapse" id="sidebar-integrations">
-              <ul className="nav nav-sm flex-column">
-                <li className="nav-item">
-                  <Link to="/programManagement/productManagement" className="nav-link">
-                    상품관리
-                  </Link>
-                </li>
-                <li className="nav-item">
-                  <Link to="/programManagement/curriculumManagement" className="nav-link">
-                    커리큘럼 관리
-                  </Link>
-                </li>
-                <li className="nav-item">
-                  <Link to="/programManagement/lessonSignManagement" className="nav-link">
-                    레슨사인지 관리
-                  </Link>
-                </li>
-              </ul>
-            </div>
+            <UncontrolledCollapse toggler="#firToggle">
+              <div className="collapse show" id="sidebar-integrations">
+                <ul className="nav nav-sm flex-column">
+                  <li className="nav-item">
+                    <Link to="/programManagement/productManagement" className="nav-link">
+                      상품관리
+                    </Link>
+                  </li>
+                  <li className="nav-item">
+                    <Link to="/programManagement/curriculumManagement" className="nav-link">
+                      커리큘럼 관리
+                    </Link>
+                  </li>
+                  <li className="nav-item">
+                    <Link to="/programManagement/lessonSignManagement" className="nav-link">
+                      레슨사인지 관리
+                    </Link>
+                  </li>
+                </ul>
+              </div>
+            </UncontrolledCollapse>
           </li>
           <li className="nav-item">
               <Link className="nav-link" to="/personnelmngm"
@@ -97,23 +117,25 @@ const Sidebar = () => {
               </Link>
           </li>
           <li className="nav-item">
-            <Link className="nav-link" to="#sidebar-authentication" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebar-authentication">
+            <Link className="nav-link" to="#sidebar-authentication" id="SecToggle" onClick={toggleMenu} data-bs-toggle="collapse" role="button" aria-expanded={isOpen.SecToggle} aria-controls="sidebar-authentication">
               <i className="bi bi-person-bounding-box"></i> 설정
             </Link>
-            <div className="collapse" id="sidebar-authentication">
-              <ul className="nav nav-sm flex-column">
-                <li className="nav-item">
-                  <Link to="/setting/notice" className="nav-link">
-                    공지사항
-                  </Link>
-                </li>
-                <li className="nav-item">
-                  <Link to="/setting/history" className="nav-link">
-                    히스토리
-                  </Link>
-                </li>
-              </ul>
-            </div>
+            <UncontrolledCollapse toggler="#SecToggle">
+              <div className="collapse show" id="sidebar-authentication">
+                <ul className="nav nav-sm flex-column">
+                  <li className="nav-item">
+                    <Link to="/setting/notice" className="nav-link">
+                      공지사항
+                    </Link>
+                  </li>
+                  <li className="nav-item">
+                    <Link to="/setting/history" className="nav-link">
+                      히스토리
+                    </Link>
+                  </li>
+                </ul>
+              </div>
+            </UncontrolledCollapse>
           </li>
         </ul>
         {/* <!-- Divider --> */}
