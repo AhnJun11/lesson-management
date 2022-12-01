@@ -10,13 +10,19 @@ import {BrowserRouter, Route, Routes} from 'react-router-dom';
 import Login from './pages/Login';
 import Membermngm from './pages/Membermngm';
 import Statisticalas from './pages/Statisticalas';
+import Accountingmngm from './pages/Accountingmngm';
+import Personnelmngm from './pages/Personnelmngm';
+import Permissionsmngm from './pages/Permissionsmngm';
+import Productmngm from './pages/Productmngm';
+import Curriculummngm from './pages/Curriculummngm';
+import LessonSignmngm from './pages/Lessonsignmngm';
+import Notice from './pages/Notice';
+import History from './pages/History';
 
 // Components
 import Header from './components/Header';
 import Sidebar from './components/Sidebar';
-import Accountingmngm from './pages/Accountingmngm';
-import Personnelmngm from './pages/Personnelmngm';
-import Permissionsmngm from './pages/Permissionsmngm';
+
 
 
 function App() {
@@ -33,10 +39,15 @@ function App() {
             <Header/>
             <Routes>
               <Route path='/' element={<Membermngm/>} />
-              <Route path='accountingManagement' element={<Accountingmngm/>} />
+              <Route path='accountingmngm' element={<Accountingmngm/>} />
               <Route path='statisticalas' element={<Statisticalas/>} />
               <Route path='personnelmngm' element={<Personnelmngm/>} />
               <Route path='permissionsmngm' element={<Permissionsmngm/>} />
+              <Route path='productmngm' element={<Productmngm/>} />
+              <Route path='curriculummngm' element={<Curriculummngm/>} />
+              <Route path='lessonSignmngm' element={<LessonSignmngm/>} />
+              <Route path='notice' element={<Notice/>} />
+              <Route path='history' element={<History/>} />
             </Routes>
           </div>
         </div>

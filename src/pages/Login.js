@@ -32,8 +32,8 @@ const Login = () => {
                                     <br/><br/>
                                     <div className="mb-2">
                                         <a href="/loginPage/idPwdFind" className="text-sm text-muted text-primary-hover">아이디 찾기</a> | 
-                                        <a href="/loginPage/idPwdFind" className="text-sm text-muted text-primary-hover">비밀번호 찾기</a> 
-                                        <a href="/loginPage/joinMembershipAgreement" className="text-sm text-muted text-primary-hover">회원가입</a>
+                                        <a href="/loginPage/idPwdFind" className="text-sm text-muted text-primary-hover"> 비밀번호 찾기</a> 
+                                        <a href="/loginPage/joinMembershipAgreement" style={{float: 'right'}} className="text-sm text-muted text-primary-hover">회원가입</a>
                                     </div>
                                 </div>
                             </form>

@@ -62,7 +62,7 @@ const Sidebar = () => {
               </Link>
           </li>
           <li className="nav-item">
-              <Link className="nav-link" to="/accountingManagement"
+              <Link className="nav-link" to="/accountingmngm"
                       role="button" aria-expanded="false"
                       aria-controls="sidebar-projects"> <i className="bi bi-kanban"></i>
                           회계 관리
@@ -84,17 +84,17 @@ const Sidebar = () => {
               <div className="collapse show" id="sidebar-integrations">
                 <ul className="nav nav-sm flex-column">
                   <li className="nav-item">
-                    <Link to="/programManagement/productManagement" className="nav-link">
+                    <Link to="/productmngm" className="nav-link">
                       상품관리
                     </Link>
                   </li>
                   <li className="nav-item">
-                    <Link to="/programManagement/curriculumManagement" className="nav-link">
+                    <Link to="/curriculummngm" className="nav-link">
                       커리큘럼 관리
                     </Link>
                   </li>
                   <li className="nav-item">
-                    <Link to="/programManagement/lessonSignManagement" className="nav-link">
+                    <Link to="/lessonSignmngm" className="nav-link">
                       레슨사인지 관리
                     </Link>
                   </li>
@@ -124,12 +124,12 @@ const Sidebar = () => {
               <div className="collapse show" id="sidebar-authentication">
                 <ul className="nav nav-sm flex-column">
                   <li className="nav-item">
-                    <Link to="/setting/notice" className="nav-link">
+                    <Link to="/notice" className="nav-link">
                       공지사항
                     </Link>
                   </li>
                   <li className="nav-item">
-                    <Link to="/setting/history" className="nav-link">
+                    <Link to="/history" className="nav-link">
                       히스토리
                     </Link>
                   </li>
