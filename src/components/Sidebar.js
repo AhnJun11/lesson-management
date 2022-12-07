@@ -137,6 +137,13 @@ const Sidebar = () => {
               </div>
             </UncontrolledCollapse>
           </li> */}
+          <li className="nav-item">
+              <Link className="nav-link" to="/"
+                      role="button" aria-expanded="false"
+                      aria-controls="sidebar-projects"> <i className="bi bi-briefcase"></i>
+                          마이 페이지
+              </Link>
+          </li>
         </ul>
         {/* <!-- Divider --> */}
         <hr className="navbar-divider my-4 opacity-70"/>
