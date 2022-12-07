@@ -6,16 +6,16 @@ const Header = () => {
         {/* <!-- Form --> */}
         <form className="form-inline ms-auto me-4 d-none d-md-flex">
             <div className="input-group input-group-inline shadow-none">
-            <span className="input-group-text border-0 shadow-none ps-0 pe-3">
+            {/* <span className="input-group-text border-0 shadow-none ps-0 pe-3">
                 <i className="bi bi-search"></i>
             </span>
-            <input type="text" className="form-control form-control-flush" placeholder="Search" aria-label="Search" />
+            <input type="text" className="form-control form-control-flush" placeholder="Search" aria-label="Search" /> */}
             </div>
         </form>
         {/* <!-- Right menu --> */}
         <div className="navbar-user d-none d-sm-block">
             <div className="hstack gap-3 ms-4">
-            <div className="dropdown">
+            {/* <div className="dropdown">
                 <Link to="#" className="nav-link px-3 text-base text-muted text-opacity-70 text-opacity-100-hover" id="dropdown-notifications" data-bs-toggle="dropdown" aria-expanded="false">
                 <i className="bi bi-bell-fill"></i>
                 </Link>
@@ -37,58 +37,12 @@ const Header = () => {
                     <span className="text-muted text-xs">30 mins ago</span>
                     </div>
                 </div>
-                <div className="dropdown-item py-3 d-flex">
-                    <div>
-                    <img alt="..." src="/img/people/img-1.jpg" className="avatar rounded-circle" />
-                    </div>
-                    <div className="flex-fill ms-3">
-                    <div className="text-sm lg-snug w-64 text-wrap">
-                        <Link to="#" className="font-semibold text-heading text-primary-hover">Robert</Link> sent Link message to <Link to="#" className="font-semibold text-heading text-primary-hover">Webpixels</Link>
-                    </div>
-                    <span className="text-muted text-xs">30 mins ago</span>
-                    </div>
-                </div>
-                <div className="dropdown-item py-3 d-flex">
-                    <div>
-                    <img alt="..." src="/img/people/img-2.jpg" className="avatar rounded-circle" />
-                    </div>
-                    <div className="flex-fill ms-3">
-                    <div className="text-sm lg-snug w-64 text-wrap">
-                        <Link to="#" className="font-semibold text-heading text-primary-hover">Robert</Link> sent Link message to <Link to="#" className="font-semibold text-heading text-primary-hover">Webpixels</Link>
-                    </div>
-                    <span className="text-muted text-xs">30 mins ago</span>
-                    </div>
-                </div>
-                <div className="dropdown-item py-3 d-flex">
-                    <div>
-                    <div className="avatar bg-success text-white rounded-circle">
-                        KW
-                    </div>
-                    </div>
-                    <div className="flex-fill ms-3">
-                    <div className="text-sm lg-snug w-64 text-wrap">
-                        <Link to="#" className="font-semibold text-heading text-primary-hover">Robert</Link> sent Link message to <Link to="#" className="font-semibold text-heading text-primary-hover">Webpixels</Link>
-                    </div>
-                    <span className="text-muted text-xs">30 mins ago</span>
-                    </div>
-                </div>
-                <div className="dropdown-item py-3 d-flex">
-                    <div>
-                    <img alt="..." src="/img/people/img-4.jpg" className="avatar rounded-circle" />
-                    </div>
-                    <div className="flex-fill ms-3">
-                    <div className="text-sm lg-snug w-64 text-wrap">
-                        <Link to="#" className="font-semibold text-heading text-primary-hover">Robert</Link> sent Link message to <Link to="#" className="font-semibold text-heading text-primary-hover">Webpixels</Link>
-                    </div>
-                    <span className="text-muted text-xs">30 mins ago</span>
-                    </div>
-                </div>
                 <div className="dropdown-divider"></div>
                 <div className="dropdown-item py-2 text-center">
                     <Link to="#" className="font-semibold text-muted text-primary-hover">View all</Link>
                 </div>
                 </div>
-            </div>
+            </div> */}
             <div className="dropdown">
                 <Link className="d-flex align-items-center" to="#" role="button" data-bs-toggle="dropdown" aria-haspopup="false" aria-expanded="false">
                 <div>
