@@ -1,4 +1,5 @@
 import {Link} from 'react-router-dom';
+import { useTable, useSortBy } from "react-table";
 
 const Table = () => {
 
