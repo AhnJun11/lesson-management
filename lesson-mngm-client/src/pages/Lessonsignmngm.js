@@ -1,4 +1,5 @@
 import BodyHeader from './../components/BodyHeader';
+import {Link} from 'react-router-dom';
 
 const LessonSignmngm = () => {
     return (
@@ -21,12 +22,12 @@ const LessonSignmngm = () => {
                             </form>
                             <button type="button" onclick="ticketSelect(this.id)" id="passTicket" className="btn btn-sm btn-primary">회원 상세페이지로 이동</button>
                             <div className="hstack gap-3 ms-auto">
-                                <a href="#" className="p-1 text-muted">
+                                <Link to="#" className="p-1 text-muted">
                                     <i className="bi bi-calendar-event" />
-                                </a>
-                                <a href="#" className="p-1 text-muted">
+                                </Link>
+                                <Link to="#" className="p-1 text-muted">
                                     <i className="bi bi-three-dots" />
-                                </a>
+                                </Link>
                             </div>
                         </div>
                         <div className="list-group list-group-flush">

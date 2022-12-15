@@ -1,8 +1,11 @@
-import {Link} from 'react-router-dom';
+import {Link, useLocation} from 'react-router-dom';
 import Dropdown from 'react-bootstrap/Dropdown';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 
 const Header = () => {
+    const locationNow = useLocation();
+
+    if (locationNow.pathname === '/') return null;
     return (
     <nav className="navbar navbar-light position-lg-sticky top-lg-0 d-none d-lg-block overlap-10 flex-none bg-white border-bottom px-0 py-3" id="topbar">
         <div className="container-fluid">

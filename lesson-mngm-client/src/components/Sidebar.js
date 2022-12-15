@@ -1,15 +1,19 @@
 import { useState } from 'react';
-import {Link} from 'react-router-dom';
+import {Link , useLocation } from 'react-router-dom';
 import {UncontrolledCollapse} from 'reactstrap';
 
 
 const Sidebar = () => {
-
+    
     const [isOpen , setMenu] = useState({
       firToggle : false,
       SecToggle : false  
     });
 
+    const locationNow = useLocation();
+
+    if (locationNow.pathname === '/') return null;
+    
     const toggleMenu = (e) => {
       const toggleSwich = e.target.ariaExpanded === "false" ? true : false;
 
@@ -55,13 +59,13 @@ const Sidebar = () => {
         {/* <!-- Navigation --> */}
         <ul className="navbar-nav">
           <li className="nav-item">
-              <Link className="nav-link" to="/"
+              <Link className="nav-link" to="/membermngm"
                       role="button" aria-expanded="false"
                       aria-controls="sidebar-projects"> <i className="bi bi-briefcase"></i>
                           회원 관리
               </Link>
           </li>
-          {/* <li className="nav-item">
+          <li className="nav-item">
               <Link className="nav-link" to="/accountingmngm"
                       role="button" aria-expanded="false"
                       aria-controls="sidebar-projects"> <i className="bi bi-kanban"></i>
@@ -75,7 +79,7 @@ const Sidebar = () => {
                       aria-controls="sidebar-projects"> <i className="bi bi-file-earmark-text"></i>
                           통계 분석
               </Link>
-          </li> */}
+          </li>
           <li className="nav-item">
             <Link className="nav-link" to="#" id="firToggle" onClick={toggleMenu} data-bs-toggle="collapse" role="button" aria-expanded={isOpen.firToggle} aria-controls="sidebar-integrations">
               <i className="bi bi-terminal"></i> 프로그램 관리
@@ -83,7 +87,7 @@ const Sidebar = () => {
             <UncontrolledCollapse toggler="#firToggle">
               <div className="collapse show" id="sidebar-integrations">
                 <ul className="nav nav-sm flex-column">
-                  {/* <li className="nav-item">
+                  <li className="nav-item">
                     <Link to="/productmngm" className="nav-link">
                       상품관리
                     </Link>
@@ -92,7 +96,7 @@ const Sidebar = () => {
                     <Link to="/curriculummngm" className="nav-link">
                       커리큘럼 관리
                     </Link>
-                  </li> */}
+                  </li>
                   <li className="nav-item">
                     <Link to="/lessonSignmngm" className="nav-link">
                       레슨사인지 관리
@@ -102,7 +106,7 @@ const Sidebar = () => {
               </div>
             </UncontrolledCollapse>
           </li>
-          {/* <li className="nav-item">
+           <li className="nav-item">
               <Link className="nav-link" to="/personnelmngm"
                       role="button" aria-expanded="false"
                       aria-controls="sidebar-projects"> <i className="bi bi-people"></i>
@@ -136,7 +140,7 @@ const Sidebar = () => {
                 </ul>
               </div>
             </UncontrolledCollapse>
-          </li> */}
+          </li>
           <li className="nav-item">
               <Link className="nav-link" to="/"
                       role="button" aria-expanded="false"
