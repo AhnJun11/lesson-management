@@ -49,9 +49,9 @@ const Header = () => {
                         </div>
                         </div>
                     </div> */}
-                    <div className="avatar avatar-sm bg-warning rounded-circle text-white">
+                    {/* <div className="avatar avatar-sm bg-warning rounded-circle text-white">
                         <img src={process.env.PUBLIC_URL + `/assets/people/img-profile.jpg`} />
-                    </div>
+                    </div> */}
                     <NavDropdown title="Tahlia">
                         <div className="dropdown dropdown-header">
                             <span className="d-block text-sm text-muted mb-1">Signed in as</span>

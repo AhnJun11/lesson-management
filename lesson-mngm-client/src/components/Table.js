@@ -47,7 +47,7 @@ const Table = () => {
 										<tr>
 											<td>1</td>
 											<td>입문</td>
-											<td><Link to="/member/memberDetail"><i class="bi bi-gender-female"></i> 아무개(0001)</Link></td>
+											<td><Link to="/membermngm/memberDetail"><i class="bi bi-gender-female"></i> 아무개(0001)</Link></td>
 											<td>2022.01.24 ~ 2022.04.23
 												<div className="d-flex align-items-center justify-content-center">
 													<span className="me-2 ">38%</span>

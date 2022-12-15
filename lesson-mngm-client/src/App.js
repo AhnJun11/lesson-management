@@ -11,6 +11,7 @@ import { useEffect, useState } from 'react';
 //pages
 import Login from './pages/Login';
 import Membermngm from './pages/Membermngm';
+import MemberDetail from './pages/MemberDetail';
 import Statisticalas from './pages/Statisticalas';
 import Accountingmngm from './pages/Accountingmngm';
 import Personnelmngm from './pages/Personnelmngm';
@@ -37,6 +38,7 @@ function App() {
             <Routes>
               <Route path='/' element={<Login/>} />
               <Route path='/membermngm' element={<Membermngm/>} />
+              <Route path='/membermngm/memberDetail' element={<MemberDetail/>} />
               <Route path='/accountingmngm' element={<Accountingmngm/>} />
               <Route path='/statisticalas' element={<Statisticalas/>} />
               <Route path='/personnelmngm' element={<Personnelmngm/>} />
