@@ -56,8 +56,68 @@ const LessonSignmngm = () => {
                         <div className="list-group list-group-flush">
                             <div className="list-group-item py-3">
                                 <div className="row gx-4">	
-                                    <div className="col-md-12">
+                                    <div className="col-md-3">
                                         {/* <!-- File upload --> */}
+                                        <div className="rounded bg-primary bg-opacity-10 bg-opacity-20-hover border-2 border-primary border-dashed border-primary-hover position-relative">
+                                            <div className="d-flex justify-content-center px-5 py-3">
+                                                <label for="file-upload" className="position-absolute w-full h-full top-0 start-0 cursor-pointer">
+                                                    <input id="file-upload" name="file-upload" type="file" className="visually-hidden" accept="image/*" capture="camera" />
+                                                </label>
+                                                <div className="text-center">
+                                                    <div className="text-2xl text-primary">
+                                                        <i className="bi bi-cloud-upload-fill"></i>
+                                                    </div>
+                                                    <div className="d-flex text-sm text-primary mt-3">
+                                                        <p className="font-semibold">이미지를 업로드해주세요.</p>
+                                                    </div>
+                                                    <p className="text-xs text-primary">
+                                                        PNG, JPG, GIF up to 3MB
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="col-md-3">
+                                        <div className="rounded bg-primary bg-opacity-10 bg-opacity-20-hover border-2 border-primary border-dashed border-primary-hover position-relative">
+                                            <div className="d-flex justify-content-center px-5 py-3">
+                                                <label for="file-upload" className="position-absolute w-full h-full top-0 start-0 cursor-pointer">
+                                                    <input id="file-upload" name="file-upload" type="file" className="visually-hidden" accept="image/*" capture="camera" />
+                                                </label>
+                                                <div className="text-center">
+                                                    <div className="text-2xl text-primary">
+                                                        <i className="bi bi-cloud-upload-fill"></i>
+                                                    </div>
+                                                    <div className="d-flex text-sm text-primary mt-3">
+                                                        <p className="font-semibold">이미지를 업로드해주세요.</p>
+                                                    </div>
+                                                    <p className="text-xs text-primary">
+                                                        PNG, JPG, GIF up to 3MB
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="col-md-3">
+                                        <div className="rounded bg-primary bg-opacity-10 bg-opacity-20-hover border-2 border-primary border-dashed border-primary-hover position-relative">
+                                            <div className="d-flex justify-content-center px-5 py-3">
+                                                <label for="file-upload" className="position-absolute w-full h-full top-0 start-0 cursor-pointer">
+                                                    <input id="file-upload" name="file-upload" type="file" className="visually-hidden" accept="image/*" capture="camera" />
+                                                </label>
+                                                <div className="text-center">
+                                                    <div className="text-2xl text-primary">
+                                                        <i className="bi bi-cloud-upload-fill"></i>
+                                                    </div>
+                                                    <div className="d-flex text-sm text-primary mt-3">
+                                                        <p className="font-semibold">이미지를 업로드해주세요.</p>
+                                                    </div>
+                                                    <p className="text-xs text-primary">
+                                                        PNG, JPG, GIF up to 3MB
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="col-md-3">
                                         <div className="rounded bg-primary bg-opacity-10 bg-opacity-20-hover border-2 border-primary border-dashed border-primary-hover position-relative">
                                             <div className="d-flex justify-content-center px-5 py-3">
                                                 <label for="file-upload" className="position-absolute w-full h-full top-0 start-0 cursor-pointer">

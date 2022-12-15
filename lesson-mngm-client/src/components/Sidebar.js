@@ -73,13 +73,13 @@ const Sidebar = () => {
               </Link>
           </li>
           
-          <li className="nav-item">
+          {/* <li className="nav-item">
               <Link className="nav-link" to="/statisticalas"
                       role="button" aria-expanded="false"
                       aria-controls="sidebar-projects"> <i className="bi bi-file-earmark-text"></i>
                           통계 분석
               </Link>
-          </li>
+          </li> */}
           <li className="nav-item">
             <Link className="nav-link" to="#" id="firToggle" onClick={toggleMenu} data-bs-toggle="collapse" role="button" aria-expanded={isOpen.firToggle} aria-controls="sidebar-integrations">
               <i className="bi bi-terminal"></i> 프로그램 관리
@@ -113,14 +113,14 @@ const Sidebar = () => {
                           인사 관리
               </Link>
           </li>
-          <li className="nav-item">
+          {/* <li className="nav-item">
               <Link className="nav-link" to="/permissionsmngm"
                       role="button" aria-expanded="false"
                       aria-controls="sidebar-projects"> <i className="bi bi-gear"></i>
                           권한 관리
               </Link>
-          </li>
-          <li className="nav-item">
+          </li> */}
+          {/* <li className="nav-item">
             <Link className="nav-link" to="#sidebar-authentication" id="SecToggle" onClick={toggleMenu} data-bs-toggle="collapse" role="button" aria-expanded={isOpen.SecToggle} aria-controls="sidebar-authentication">
               <i className="bi bi-person-bounding-box"></i> 설정
             </Link>
@@ -140,7 +140,7 @@ const Sidebar = () => {
                 </ul>
               </div>
             </UncontrolledCollapse>
-          </li>
+          </li> */}
           <li className="nav-item">
               <Link className="nav-link" to="/"
                       role="button" aria-expanded="false"
