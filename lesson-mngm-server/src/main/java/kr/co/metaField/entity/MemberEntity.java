@@ -19,5 +19,4 @@ public class MemberEntity {
 	private String recommender;
 	private String job;
 	private String inflowRoute;
-	private Integer employeeId;
 }

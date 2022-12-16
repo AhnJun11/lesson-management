@@ -5,8 +5,6 @@ import './css/App.css'
 // import 'https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css';
 
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
-import axios  from 'axios';
-import { useEffect, useState } from 'react';
 
 //pages
 import Login from './pages/Login';
