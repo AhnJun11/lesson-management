@@ -1,3 +1,4 @@
+import EmployeeRegistration from './EmployeeRegistration';
 import MemberRegistration from './MemberRegistration';
 
 const BodyHeader = ({title,firstFilterText,SecondFilterText}) => {
@@ -15,6 +16,7 @@ const BodyHeader = ({title,firstFilterText,SecondFilterText}) => {
                 </h1>
               </div>
                 <MemberRegistration />
+                {/* <EmployeeRegistration/> */}
             </div>
             {/* <!-- Nav --> */}
             <ul className="nav nav-tabs overflow-x border-0">

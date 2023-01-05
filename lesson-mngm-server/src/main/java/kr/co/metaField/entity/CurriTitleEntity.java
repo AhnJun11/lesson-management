@@ -10,7 +10,7 @@ public class CurriTitleEntity {
 	private String lessonName;
 	private Integer total;
 	private Integer period;
-	private String usingState;
+	private Integer usingState;
 	private Date createAt;
 
 }

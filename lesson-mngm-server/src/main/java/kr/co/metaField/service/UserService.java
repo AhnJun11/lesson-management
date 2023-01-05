@@ -1,31 +1,34 @@
-package kr.co.metaField.service.impl;
-
-import java.util.List;
+package kr.co.metaField.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import kr.co.metaField.entity.MemberEntity;
-import kr.co.metaField.mapper.MemberMapper;
-import kr.co.metaField.service.MemberService;
+import kr.co.metaField.entity.UserEntity;
+import kr.co.metaField.mapper.UserMapper;
 
 @Service
-public class MemberServiceImpl implements MemberService {
+public class UserService{
 	
 	@Autowired
-	private MemberMapper memMapper;
+	private UserMapper userMapper;
 	
-	@Override
-	public List<MemberEntity> getMemberList() {
-		return memMapper.getMemberList();
-	}
-
-	@Override
-	public String getMember() {
-		return memMapper.getMember();
+	public int insertUser(UserEntity user) {
+		userMapper.insertUser(user);
+		user.setId(userMapper.getSearchUser(user));
+		return userMapper.insertMember(user);
 	}
 	
-
+	public String infoUser(UserEntity user) {
+		return userMapper.infoUser(user);
+	}
 	
-
+	public String idCheck(String loginId) {
+		return userMapper.idCheck(loginId);
+	}
+	
+	public int registerUser(UserEntity user) {
+		return userMapper.registerUser(user);
+	}
+	
+	
 }

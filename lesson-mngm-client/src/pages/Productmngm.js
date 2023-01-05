@@ -1,59 +1,81 @@
 import BodyHeader from './../components/BodyHeader';
+import axios from 'axios';
+import React, { useState, useEffect, useMemo } from 'react';
+import Tables from '../components/Table';
 
 const Productmngm = () => {
+
+    const columns = useMemo(
+        () => [
+            {
+                accessor: "id",
+                Header: "No"
+            },
+            {
+                accessor: "lessonName",
+                Header: "구분"
+            },
+            {
+                accessor: "total",
+                Header: "속성"
+            },
+            {
+                accessor: "period",
+                Header: "이용권명"
+            },
+            {
+                accessor: "createAt",
+                Header: "이용기간"
+                
+            },
+            {
+                accessor: "ㅂ",
+                Header: "판매가"
+            },
+            {
+                accessor: "ㅈ",
+                Header: "이용횟수"
+            },
+            {
+                accessor: "ㄷ",
+                Header: "일일 이용제한"
+            },
+            {
+                accessor: "ㄱ",
+                Header: "주간 이용제한"
+            },
+            {
+                accessor: "s",
+                Header: "예약 취소권"
+            },
+            {
+                accessor: "q",
+                Header: "중지권"
+            },
+            {
+                accessor: "w",
+                Header: "최대 예약권"
+            }
+        ],
+        []
+        );
+        const [data, setDatas] = useState([]);
+        const datas = async() => {
+                const res = await axios.get('/curriculummngm');  
+                setDatas(res.data);            
+        };
+        useEffect(() => {
+            datas();
+        },[]);
+        
     return (
         <div>
             <BodyHeader title={'상품관리'}/>
-            {/* <!-- Main --> */}
-            <main class="py-6 bg-surface-secondary">
-                {/* <!-- Container --> */}
-                <div class="container-fluid">
-                    <div class="vstack gap-6">
-                        {/* <!-- Items --> */}
-                        <div class="row g-6">
-                            <div class="card">
-                                <div class="card-header border-bottom">
-                                </div>
-                                <div class="table-responsive">
-                                    <table class="table table-hover table-nowrap">
-                                        <thead class="table-light">
-                                            <tr>
-                                                <th scope="col">No</th>
-                                                <th scope="col">구분</th>
-                                                <th scope="col">속성</th>
-                                                <th scope="col">이용권명</th>
-                                                <th scope="col">이용기간</th>
-                                                <th scope="col">판매가</th>
-                                                <th scope="col">이용횟수</th>
-                                                <th scope="col">일일 이용제한</th>
-                                                <th scope="col">주간 이용제한</th>
-                                                <th scope="col">예약 취소권</th>
-                                                <th scope="col">중지권</th>
-                                                <th scope="col">최대 예약권</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>개인레슨</td>
-                                                <td>패키지</td>
-                                                <td>3개월 종일 입문자</td>
-                                                <td>3개월</td>
-                                                <td>1,090,000</td>
-                                                <td>24회</td>
-                                                <td>3회</td>
-                                                <td>무제한</td>
-                                                <td>무제한</td>
-                                                <td>1회 30일</td>
-                                                <td>무제한</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    </div>
+            <main className="py-6 bg-surface-secondary">
+                <div className="container-fluid vstack gap-6">
+                    <Tables columns={columns} data={data}/>
+                </div>
+            </main>
                     {/* <!-- 상품 모달 --> */}
                     {/* <div class="offcanvas offcanvas-end w-full w-lg-1/3"
                         data-bs-scroll="true" data-bs-backdrop="true" tabindex="-1"
@@ -201,7 +223,6 @@ const Productmngm = () => {
                             <button type="button" class="btn btn-sm btn-primary">등록하기</button>
                         </div>
                     </div> */}
-            </main>
         </div>
     );
 };

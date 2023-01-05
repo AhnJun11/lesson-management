@@ -16,7 +16,7 @@ public class CurriTitleController {
 	private CurriTitleService curTiService;
 	
 	@GetMapping("/curriculummngm")
-	public List<CurriTitleEntity> getCurriculum() {
+	public List<CurriTitleEntity> getCurriTitleList() {
 		return curTiService.getCurriTitleList();
 	}
 

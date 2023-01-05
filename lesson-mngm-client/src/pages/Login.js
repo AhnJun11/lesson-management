@@ -1,6 +1,7 @@
 import { useState, useRef } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const Login = () => {
 
@@ -36,7 +37,6 @@ const Login = () => {
                 axios.get('/api/hellos')
                 .then(response => setHello(response.data))
                 .catch(error => console.log(error))
-                console.log({hello})
                 navigate('/membermngm');
       };
 
@@ -73,7 +73,7 @@ const Login = () => {
                                     <div className="mb-2">
                                         <a href="/loginPage/idPwdFind" className="text-sm text-muted text-primary-hover">아이디 찾기</a> | 
                                         <a href="/loginPage/idPwdFind" className="text-sm text-muted text-primary-hover"> 비밀번호 찾기</a> 
-                                        <a href="/loginPage/joinMembershipAgreement" style={{float: 'right'}} className="text-sm text-muted text-primary-hover">회원가입</a>
+                                        <Link to="/joinMembership" style={{float: 'right'}} className="text-sm text-muted text-primary-hover">회원가입</Link>
                                     </div>
                                 </div>
                             

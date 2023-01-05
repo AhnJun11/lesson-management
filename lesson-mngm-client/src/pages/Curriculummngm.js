@@ -1,7 +1,7 @@
 import BodyHeader from './../components/BodyHeader';
 import axios from 'axios';
 import React, { useState, useEffect, useMemo } from 'react';
-import Tables from '../components/Tables';
+import Tables from '../components/Table';
 
 const Curriculummngm = () => {
     const columns = useMemo(
@@ -11,7 +11,7 @@ const Curriculummngm = () => {
                 Header: "No"
             },
             {
-                accessor: "lessonName",
+                accessor: "name",
                 Header: "커리큘럼 명"
             },
             {
@@ -28,7 +28,7 @@ const Curriculummngm = () => {
                 
             },
             {
-                accessor: "usingState",
+                accessor: "activation",
                 Header: "사용여부"
             }
         ],
@@ -36,7 +36,10 @@ const Curriculummngm = () => {
     );
     const [data, setDatas] = useState([]);
     const datas = async() => {
-            const res = await axios.get('/curriculummngm');  
+            const res = await axios.get('/curriculummngm');
+            res.data.map((forData) => {
+                forData.usingState === 1 ? forData.usingState="활성화": forData.usingState="비활성화"
+            });  
             setDatas(res.data);            
     };
     useEffect(() => {
@@ -45,7 +48,11 @@ const Curriculummngm = () => {
     return (
         <>
             <BodyHeader title={'커리큘럼 관리'}/>
-            <Tables columns={columns} data={data}/>  			
+            <main className="py-6 bg-surface-secondary">
+                <div className="container-fluid vstack gap-6">
+                    <Tables columns={columns} data={data}/>  	
+                </div>
+            </main>
         </>
     );
 };

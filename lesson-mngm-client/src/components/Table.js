@@ -1,114 +1,171 @@
-import axios from 'axios';
-import React, { useState, useEffect } from 'react';
 import {Link} from 'react-router-dom';
-import { useTable, useSortBy } from "react-table";
+import { useTable, useGlobalFilter, useSortBy, usePagination, useRowSelect, useAsyncDebounce } from "react-table";
+import React from 'react';
 
-const Table = () => {
-	const [test,setTest] = useState('');
+export const IndeterminateCheckbox = React.forwardRef(
+    ({ indeterminate, ...rest }, ref) => {
+      const defaultRef = React.useRef()
+      const resolvedRef = ref || defaultRef
+  
+      React.useEffect(() => {
+        resolvedRef.current.indeterminate = indeterminate
+      }, [resolvedRef, indeterminate])
+  
+      return (
+        <>
+            <Link to="" className="btn btn-sm btn-square btn-neutral">
+                <i ref={resolvedRef} {...rest} className="bi bi-pencil"></i>
+            </Link>
+        </>
+      )
+    }
+  )
 
-	const getPosts = async () => {
-		const posts = await axios.get(
-		  '/tttttt'
-		);
-		setTest(posts.data);
-		console.log(posts.data);
-	  };
-
-	const getSends = async () => {
-		const sends = await axios.post(
-			'/qwer', {test:"hihih"}
-		);
-		console.log(sends.status);
-	}
-	  
-	  useEffect(() => {
-		getPosts();
-		getSends();
-	  }, []);
-
-	
-				// axios.get('/tttttt')
-                // .then(response => setTest(response.data))
-                // .catch(error => console.log(error))
-	// posts.map(post => {post.id})
-	//프로그레스 바
-	// <div className="d-flex align-items-center justify-content-center">
-	// 	<span className="me-2 ">38%</span>
-	// 	<div className="progress" style={{width: '100px'}}>
-	// 		<div className="progress-bar bg-warning" role="progressbar" aria-valuenow="38" aria-valuemin="0" aria-valuemax="100" style={{width: '38%'}} />
-	// 	</div>
-	// </div>
+  function GlobalFilter({
+    preGlobalFilteredRows,
+    globalFilter,
+    setGlobalFilter,
+  }) {
+    const count = preGlobalFilteredRows.length
+    const [value, setValue] = React.useState(globalFilter)
+    const onChange = useAsyncDebounce(value => {
+      setGlobalFilter(value || undefined)
+    }, 200)
     return (
-        // <!-- Main -->
-			<div className="container-fluid">
-				<main className="py-6 bg-surface-secondary">
-					{/* <!-- Container --> */}
-					<div className="container-fluid" >
-						<div className="card" style={{marginLeft: '-20px'}}>
-							<div className="card-header border-bottom">
-								<h6 className="mb-0">
-									Show <select className="form-select form-select-sm"
-										style={{width: 'auto' , height: 'auto' , display: 'inline'}}>
-										<option className="dropdown-item" data-bs-toggle="tab" value="10">10</option>
-										<option className="dropdown-item" data-bs-toggle="tab" value="20">20</option>
-										<option className="dropdown-item" data-bs-toggle="tab" value="30">30</option>
-									</select> entries
-									{/* <!-- Form --> */}
-									<form style={{float:'right'}}className="form-inline ms-auto me-4 d-none d-md-flex">
-										<div className="input-group input-group-sm input-group-inline">
-											<span className="input-group-text pe-2"> <i
-												className="bi bi-search"></i>
-											</span> <input type="email" className="form-control" placeholder="Search"
-												aria-label="Search"/>
-										</div>
-									</form>
-								</h6>
-							</div>
-							<div className="table-responsive">
-								<table className="table table-hover table-nowrap table-sm">
-									<thead className="table-light">
-										<tr>
-											<th scope="col">No</th>
-											<th scope="col">구분</th>
-											<th scope="col">회원명(회원번호)</th>
-											<th scope="col">성별</th>
-											<th scope="col">레슨 기간</th>
-											<th scope="col">진도율</th>
-											<th scope="col">결석일</th>
-											<th scope="col">최근 레슨일</th>
-											<th scope="col">담당프로</th>
-											<th scope="col"></th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr>
-											<td>1</td>
-											<td>{test}</td>
-											<td>아무개(0001)</td>
-											<td>남자</td>
-											<td>2022.01.24 ~ 2022.04.23</td>
-											<td>30회 중 24회</td>
-											<td>1일</td>
-											<td>2022-02-17</td>
-											<td>가나다</td>
-											<td>
-                                            <Link to="/membermngm/memberDetail" className="btn btn-sm btn-square btn-neutral">
-                                            <i className="bi bi-pencil"></i>
-                                            </Link>
-                                        	</td>
-										</tr>
-									</tbody>
-								</table>
-							</div>
-							<div className="card-footer border-0 py-5">
-								<span className="text-muted text-sm">Showing 10 items out of 250 results found</span>
-							</div>
-						</div>
-					</div>
-				</main>
-			</div>
+      <>
+        <form style={{float:'right'}}className="form-inline ms-auto me-4 d-none d-md-flex">
+            <div className="input-group input-group-sm input-group-inline">
+                <span className="input-group-text pe-2"> 
+                    <i className="bi bi-search"></i>
+                </span> 
+                <input type="email" className="form-control" placeholder="Search" aria-label="Search" value={value || ""}
+                    onChange={e => { setValue(e.target.value); onChange(e.target.value);}}/>
+            </div>
+        </form>
+      </>
+    )
+  }
+
+const Tables = ({columns,data}) => {
+
+    const { 
+        getTableProps,
+        getTableBodyProps,
+        headerGroups,
+        prepareRow,
+        setGlobalFilter,
+        canPreviousPage,
+        canNextPage,
+        pageOptions,
+        pageCount,
+        gotoPage,
+        nextPage,
+        previousPage,
+        setPageSize,
+        preGlobalFilteredRows,
+        state,
+        page,
+        state: { pageIndex, pageSize },
+    } = useTable({ columns, data, initialState: { pageSize: 2 } }, useGlobalFilter, useSortBy, usePagination,useRowSelect,
+        hooks => {
+            hooks.allColumns.push(columns => [
+              ...columns,{
+                id: 'selection',
+                disableResizing: true,
+                minWidth: 35,
+                width: 35,
+                maxWidth: 35,
+                // Cell: ({ row }) => (
+                //   <div>
+                //     <IndeterminateCheckbox {...row.getToggleRowSelectedProps()} />
+                //   </div>
+                // ),
+              },
+            ])
+            hooks.useInstanceBeforeDimensions.push(({ headerGroups }) => {
+              const selectionGroupHeader = headerGroups[0].headers[0]
+              selectionGroupHeader.canResize = false
+            })
+          });
+    return (
+      <>
+        <div className="card">                
+          <div className="card-header border-bottom">
+              <h6 className="mb-0">
+                  Show <select className="form-select form-select-sm" style={{width: 'auto' , height: 'auto' , display: 'inline'}} 
+                      value={pageSize} onChange={e => { setPageSize(Number(e.target.value)) }} >
+                      {[2, 3, 4, 5].map(pageSize => ( <option key={pageSize} value={pageSize}> {pageSize}</option> ))}
+                      
+                      <option value={pageCount * pageSize}>All</option>
+                  </select> entries
+                  <GlobalFilter preGlobalFilteredRows={preGlobalFilteredRows}globalFilter={state.globalFilter}setGlobalFilter={setGlobalFilter}/>
+              </h6>
+          </div>
+          <div className="table-responsive">
+            <table className="table table-hover table-nowrap table-sm" {...getTableProps()}>
+              <thead className="table-light">
+                {headerGroups.map((headerGroup) => (
+                    <tr {...headerGroup.getHeaderGroupProps()}>
+                    {headerGroup.headers.map((column) => (
+                      <th scope="col" {...column.getHeaderProps((column.getSortByToggleProps()))}>{column.render("Header")}
+                      <span>
+                      {column.isSorted ? (column.isSortedDesc ? " ⬇︎" : " ⬆︎") : ""}
+                    </span>
+                      </th>
+                    ))}
+                  </tr>
+                ))}
+              </thead>
+              <tbody {...getTableBodyProps()}>
+                {page.map((row,i) => {
+                    prepareRow(row)
+                    return (
+                      <tr {...row.getRowProps()}>
+                        {row.cells.map(cell => (
+                          <td {...cell.getCellProps()}>{cell.render("Cell")}</td>
+                        ))}
+                      </tr>
+                    );
+                  })}
+              </tbody>
+            </table>
+            <div className="card-footer border-0 py-5">
+              <button onClick={() => gotoPage(0)} disabled={!canPreviousPage}>
+                {'<<'}
+              </button>{' '}
+              <button onClick={() => previousPage()} disabled={!canPreviousPage}>
+                {'<'}
+              </button>{' '}
+              <button onClick={() => nextPage()} disabled={!canNextPage}>
+                {'>'}
+              </button>{' '}
+              <button onClick={() => gotoPage(pageCount - 1)} disabled={!canNextPage}>
+                {'>>'}
+              </button>{' '}
+              <span>
+              　Page{' '}
+                <strong>
+                  {pageIndex + 1} of {pageOptions.length}
+                </strong>{' '}
+              </span>
+              <span>
+                　 Go to page:{' '}
+                <input
+                  type="number" className='form-control'
+                  defaultValue={pageIndex + 1}
+                  onChange={e => {
+                    const page = e.target.value ? Number(e.target.value) - 1 : 0
+                    gotoPage(page)
+                  }}
+                  style={{ width: '80px', height: '20px' , display:'inline-block' }}
+                />
+              </span>{' '}
+              <span style={{float:'right'}} className="text-muted text-sm">Showing {pageSize} items {pageCount * pageSize} results found</span>
+            </div>
+          </div>
+        </div>
+      </>
     );
 
 };
-
-export default React.memo(Table);
+export default Tables;

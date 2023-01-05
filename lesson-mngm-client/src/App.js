@@ -23,6 +23,7 @@ import History from './pages/History';
 // Components
 import Header from './components/Header';
 import Sidebar from './components/Sidebar';
+import JoinMembership from './pages/JoinMembership';
 
 
 function App() {
@@ -35,6 +36,7 @@ function App() {
             <Header/>
             <Routes>
               <Route path='/' element={<Login/>} />
+              <Route path='/joinMembership' element={<JoinMembership/>} />
               <Route path='/membermngm' element={<Membermngm/>} />
               <Route path='/membermngm/memberDetail' element={<MemberDetail/>} />
               <Route path='/accountingmngm' element={<Accountingmngm/>} />

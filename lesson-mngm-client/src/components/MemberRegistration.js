@@ -1,13 +1,57 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
+import axios from 'axios';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import { useLocation } from 'react-router-dom';
 
 const MemberRegistration = () => {
-    
+
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
     const locationNow = useLocation();
+
+    const nameInput = useRef();
+
+    const [state, setState] = useState({
+        userName: "",
+        userGender: 1,
+        userPhoneNumber: "",
+        userNumber: 0,
+        memJob: ""
+    });
+
+    const userValueState = (e) => {
+        setState({
+          ...state,
+          [e.target.name]: e.target.value
+        });
+    };
+
+    const handleSubmit = async() => {
+        if (state.userName.length < 2 && state.userName.length >= 1) {
+            nameInput.current.focus();
+            alert("이름은 두글자 이상입니다!");
+          return;
+        } else if(state.userName.length === 0) {
+            nameInput.current.focus();
+            return;
+        }
+        
+        await axios.post(
+            '/usermngm/insert', 
+            {
+                name: state.userName,
+                gender: state.userGender,
+                phoneNumber: state.userPhoneNumber,
+                userNumber: state.userNumber,
+                positionId: 1,
+                shopId: 1,
+                job: state.memJob
+            }
+        );
+        alert("저장 성공!");
+      };
+
     if (locationNow.pathname !== '/membermngm') return null;
 
     return (
@@ -35,34 +79,41 @@ const MemberRegistration = () => {
                 </div>
                 <div className="offcanvas-body vstack gap-5">
                     <div className="col-md">
-                        <label className="form-label">이름</label> 
-                        <input type="text"className="form-control" />
+                        <label className="form-label">* 이름</label> 
+                        <input type="text"className="form-control" name="userName" placeholder="이름을 입력해주세요." 
+                            onChange={userValueState} ref={nameInput} value={state.userName}/>
                     </div>
-                    <div className="row gx-3">
-                        <div className="col-md-4">
-                            <label style={{'float':'left'}} className="form-label">휴대폰 번호</label> 
-                            <select className="form-select">
-                                <option>010</option>
-                                <option>011</option>
-                                <option>012</option>
-                            </select>		
+                    <div>
+                        <label className="form-label">* 성별</label> 
+                        <div className="vstack gap-4">
+                            <div className="d-flex gap-3">
+                                <input className="form-check-input flex-shrink-0 text-lg"type="radio" name="userGender" value={1} 
+                                    onClick={userValueState} defaultChecked />
+                                <div className="pt-1 form-checked-content">
+                                    <h6 className="mb-1 lh-relaxed">남성</h6>
+                                </div>	
+                                <input className="form-check-input flex-shrink-0 text-lg"type="radio" name="userGender" value={2} 
+                                    onClick={userValueState} />
+                                <div className="pt-1 form-checked-content">
+                                    <h6 className="mb-1 lh-relaxed">여성</h6>
+                                </div>
+                                
+                            </div>
                         </div>
-                        <div className="col-md-4">
-                            <label style={{'float':'left'}} className="form-label">　</label> 
-                            <input type="text" id="phNum1" className="form-control" />
-                        </div>
-                        <div className="col-md-4">
-                            <label style={{'float':'left'}} className="form-label">　</label> 
-                            <input type="text" id="phNum2" className="form-control" />
-                        </div>
+                    </div>
+                    <div className="mb-5">
+                        <label className="form-label" htmlFor="name">* 핸드폰 번호</label>
+                        <input type="text" className="form-control" name="userPhoneNumber" placeholder="핸드폰 번호를 입력해주세요."
+                            ref={nameInput} value={state.userPhoneNumber} onChange={userValueState} maxLength="13"/>
                     </div>
                     <div>
                         <label className="form-label">회원번호</label> 
-                        <input type="text"className="form-control" />
+                        <input type="text"className="form-control" name="userNumber" value={state.userNumber = state.userPhoneNumber.substring(9)} onChange={userValueState} readOnly/>
                     </div>
                     <div>
                         <label className="form-label">직장정보</label> 
-                        <input type="text"className="form-control" />
+                        <input type="text"className="form-control" name="memJob"
+                            onChange={userValueState} value={state.memJob} />
                     </div>
                     <div>
                         <label className="form-label">유입경로</label> 
@@ -73,49 +124,16 @@ const MemberRegistration = () => {
                         <input type="text"className="form-control" />
                     </div>
                     <div>
-                        <label className="form-label">이용권 정보</label> 
-                        <select className="form-select">
-                            <option>전체</option>
-                        </select>
-                    </div>
-                    <div className="row gx-4">
-                        <div className="col-md-6">
-                            <div>
-                                <label className="form-label">이용권 기간</label>
-                                <div className="input-group input-group-inline datepicker">
-                                    <span className="input-group-text pe-2"> 
-                                        <i className="bi bi-calendar" />
-                                    </span>
-                                    <input type="text" className="form-control"placeholder="Select date" data-input />
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col-md-6">
-                            <div>
-                                <label className="form-label">　</label>
-                                <div className="input-group input-group-inline datepicker">
-                                    <span className="input-group-text pe-2">
-                                        <i className="bi bi-calendar"></i>
-                                    </span> 
-                                    <input type="text" className="form-control"placeholder="Select date" data-input />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div>
-                        <label className="form-label">담당프로</label> 
-                        <select className="form-select">
-                            <option>전체</option>
-                        </select>
-                    </div>
-                    <div>
                         <label className="form-label">메모사항</label>
                         <textarea className="form-control"rows="2" />
+                    </div>
+                    <div>
+                        <label className="form-label text-danger">*은 필수 입력 사항입니다.</label>
                     </div>
                 </div>
                 <div className="modal-footer py-2 bg-surface-secondary">
                     <button type="button" onClick={handleClose} className="btn btn-sm btn-neutral" data-bs-dismiss="offcanvas">취소</button>
-                    <button type="button" className="btn btn-sm btn-primary">등록</button>
+                    <button type="button" onClick={handleSubmit} className="btn btn-sm btn-primary">등록</button>
                 </div>
             </Offcanvas>
         </>

@@ -12,7 +12,10 @@ import kr.co.metaField.entity.CurriTitleEntity;
 @Mapper
 public interface CurriTitleMapper {
 	
-	@Select("SELECT * FROM mf_curri_title")
-	public List<CurriTitleEntity> getCurriTitle();
+	@Select("SELECT"
+			+ "		*"
+			+ "FROM "
+			+ "		mf_store_curri_title")
+	public List<CurriTitleEntity> getCurriTitleList();
 
 }

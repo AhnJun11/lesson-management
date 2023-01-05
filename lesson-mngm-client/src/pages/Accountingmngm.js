@@ -1,18 +1,88 @@
 import BodyHeader from './../components/BodyHeader';
-import Table from './../components/Table';
-import ApexCharts from 'react-apexcharts'
 import ApexChart from '../components/ApexChart';
-
+import axios from 'axios';
+import React, { useState, useEffect, useMemo } from 'react';
+import Tables from '../components/Table';
 const Accountingmngm = () => {
+
+  const columns = useMemo(
+    () => [
+        {
+            accessor: "id",
+            Header: "No"
+        },
+        {
+            accessor: "lessonName",
+            Header: "판매일시"
+        },
+        {
+            accessor: "total",
+            Header: "회원명"
+        },
+        {
+            accessor: "period",
+            Header: "연락처"
+        },
+        {
+            accessor: "createAt",
+            Header: "판매번호"
+            
+        },
+        {
+            accessor: "ㅂ",
+            Header: "판매상품"
+        },
+        {
+            accessor: "ㅈ",
+            Header: "판매가"
+        },
+        {
+            accessor: "ㄷ",
+            Header: "결제분류"
+        },
+        {
+            accessor: "ㄱ",
+            Header: "결제수단"
+        },
+        {
+            accessor: "s",
+            Header: "미수결제"
+        },
+        {
+            accessor: "q",
+            Header: "환불수단"
+        },
+        {
+            accessor: "w",
+            Header: "환불지급액"
+        },
+        {
+            accessor: "e",
+            Header: "판매담당자"
+        },
+        {
+            accessor: "r",
+            Header: "메모"
+        },
+    ],
+    []
+  );
+  const [data, setDatas] = useState([]);
+  const datas = async() => {
+          const res = await axios.get('/curriculummngm');  
+          setDatas(res.data);            
+  };
+  useEffect(() => {
+      datas();
+  },[]);
+
     return (
-        <div>
+        <>
         <BodyHeader title={'회계관리'} firstFilterText={'만료예정'} SecondFilterText={'개시 전'}/>
-        {/* <!-- Main --> */}
-      <main className="py-6 bg-surface-secondary">
         <div className="container-fluid vstack gap-6">
             <div className="row align-items-center">
               <div className="col-sm-12 col-12">
-              <div style={{'margin-top':'20px', float:'left'}}>
+              <div style={{marginTop:'20px', float:'left'}}>
             <select className="form-select form-select-sm" style={{width: 'auto', height: 'auto', display: 'inline'}}>
 				<option className="dropdown-item" data-bs-toggle="tab" value="10">전체</option>
 				<option className="dropdown-item" data-bs-toggle="tab" value="20">이용권별</option>
@@ -25,7 +95,7 @@ const Accountingmngm = () => {
 				<option className="dropdown-item" data-bs-toggle="tab" value="23">연간 매출</option>
 				<option className="dropdown-item" data-bs-toggle="tab" value="20">기간 설정</option>
 			</select>
-			<div style={{width:'300px', float:'right', 'margin-left':'50px'}} className="input-group input-group-inline datepicker">
+			<div style={{width:'300px', float:'right', marginLeft:'50px'}} className="input-group input-group-inline datepicker">
             	<span className="input-group-text pe-2">
                 	<i className="bi bi-calendar"></i>
                 </span>
@@ -43,7 +113,7 @@ const Accountingmngm = () => {
               <h5 className="mb-0">Work Performance</h5>
             </div>
             <div className="px-4 scrollable-x">
-              <div id="chart-users" data-height="340" style={{'min-width': '780px'}}>
+              <div id="chart-users" data-height="340" style={{minWidth: '780px'}}>
                 <ApexChart/>
               </div>
             </div>
@@ -67,7 +137,7 @@ const Accountingmngm = () => {
                           <span className="h3 d-block mb-0">100,000,000원</span>
                         </div>
                       </div>
-                      <div style={{'margin-top':'5px'}}>
+                      <div style={{marginTop:'5px'}}>
 	                      <span className="badge badge-xs badge-pill bg-soft-success text-success">
 	                            <i className="bi bi-arrow-up"></i>
 	                            20%
@@ -96,7 +166,7 @@ const Accountingmngm = () => {
                           <span className="h3 d-block mb-0">100,000,000원</span>
                         </div>
                       </div>
-                      <div style={{'margin-top':'5px'}}>
+                      <div style={{marginTop:'5px'}}>
 	                      <span className="badge badge-xs badge-pill bg-soft-success text-success">
 	                            <i className="bi bi-arrow-up"></i>
 	                            20%
@@ -125,7 +195,7 @@ const Accountingmngm = () => {
                           <span className="h3 d-block mb-0">0원</span>
                         </div>
                       </div>
-                      <div style={{'margin-top':'5px'}}>
+                      <div style={{marginTop:'5px'}}>
 	                      <span className="badge badge-xs badge-pill bg-soft-success text-success">
 	                            <i className="bi bi-arrow-up"></i>
 	                            43%
@@ -154,7 +224,7 @@ const Accountingmngm = () => {
                           <span className="h3 d-block mb-0">0원</span>
                         </div>
                       </div>
-                      <div style={{'margin-top':'5px'}}>
+                      <div style={{marginTop:'5px'}}>
 	                      <span className="badge badge-xs badge-pill bg-soft-success text-success">
 	                            <i className="bi bi-arrow-up"></i>
 	                            17%
@@ -167,72 +237,10 @@ const Accountingmngm = () => {
               </div>
             </div>
           </div>
-			{/* <!-- Items --> */}
-			<div className="row g-6">
-				<div className="card">
-					<div className="card-header border-bottom">
-					</div>
-					<div className="table-responsive">
-						<table className="table table-hover table-nowrap">
-							<thead className="table-light">
-								<tr>
-									<th scope="col">판매일시</th>
-									<th scope="col">회원명</th>
-									<th scope="col">연락처</th>
-									<th scope="col">판매번호</th>
-									<th scope="col">판매상품</th>
-									<th scope="col">판매가</th>
-									<th scope="col">결제분류</th>
-									<th scope="col">결제수단</th>
-									<th scope="col">결제금액</th>
-									<th scope="col">미수결제</th>
-									<th scope="col">환불수단</th>
-									<th scope="col">환불지급액</th>
-									<th scope="col">판매담당자</th>
-									<th scope="col">메모</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td>2022-07-03 13:59:59</td>
-									<td>홍길동</td>
-									<td>010-1111-1111</td>
-									<td>1</td>
-									<td>3개월 레슨권</td>
-									<td>20원</td>
-									<td>일시불</td>
-									<td>카드</td>
-									<td>10</td>
-									<td>0</td>
-									<td>카드</td>
-									<td>0</td>
-									<td>이순신</td>
-									<td>메모</td>
-								</tr>
-								<tr>
-									<td>2022-07-03 13:59:59</td>
-									<td>홍길동</td>
-									<td>010-1111-1111</td>
-									<td>1</td>
-									<td>3개월 레슨권</td>
-									<td>20원</td>
-									<td>일시불</td>
-									<td>카드</td>
-									<td>10</td>
-									<td>0</td>
-									<td>카드</td>
-									<td>0</td>
-									<td>이순신</td>
-									<td>메모</td>
-								</tr>
-							</tbody>
-						</table>
-					</div>
-				</div>
-			</div>
+          <Tables columns={columns} data={data}/>
         </div>
-      </main>
-        </div>
+
+        </>
     );
 };
 

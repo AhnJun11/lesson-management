@@ -12,7 +12,7 @@ const Sidebar = () => {
 
     const locationNow = useLocation();
 
-    if (locationNow.pathname === '/') return null;
+
     
     const toggleMenu = (e) => {
       const toggleSwich = e.target.ariaExpanded === "false" ? true : false;
@@ -23,6 +23,9 @@ const Sidebar = () => {
       });
     };
 
+    if (locationNow.pathname === '/') return null;
+    if (locationNow.pathname === '/joinMembership') return null;
+    
     return <nav className="navbar show navbar-vertical h-lg-screen navbar-expand-lg px-0 py-3 navbar-light bg-white border-bottom border-bottom-lg-0 border-end-lg" id="sidebar">
     <div className="container-fluid">
       {/* <!-- Toggler --> */}
@@ -65,7 +68,7 @@ const Sidebar = () => {
                           회원 관리
               </Link>
           </li>
-          <li className="nav-item">
+          {/*<li className="nav-item">
               <Link className="nav-link" to="/accountingmngm"
                       role="button" aria-expanded="false"
                       aria-controls="sidebar-projects"> <i className="bi bi-kanban"></i>
@@ -73,7 +76,7 @@ const Sidebar = () => {
               </Link>
           </li>
           
-          {/* <li className="nav-item">
+           <li className="nav-item">
               <Link className="nav-link" to="/statisticalas"
                       role="button" aria-expanded="false"
                       aria-controls="sidebar-projects"> <i className="bi bi-file-earmark-text"></i>
