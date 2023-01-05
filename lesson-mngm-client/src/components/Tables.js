@@ -31,24 +31,18 @@ export const IndeterminateCheckbox = React.forwardRef(
     const onChange = useAsyncDebounce(value => {
       setGlobalFilter(value || undefined)
     }, 200)
-  
     return (
-        <>
+    <>
         <form style={{float:'right'}}className="form-inline ms-auto me-4 d-none d-md-flex">
-										<div className="input-group input-group-sm input-group-inline">
-											<span className="input-group-text pe-2"> <i
-												className="bi bi-search"></i>
-											</span> <input type="email" className="form-control" placeholder="Search"
-												aria-label="Search"
-                                                value={value || ""}
-          onChange={e => {
-            setValue(e.target.value);
-            onChange(e.target.value);
-          }}/>
-                                                
-										</div>
-									</form>
-      </>
+            <div className="input-group input-group-sm input-group-inline">
+                <span className="input-group-text pe-2"> 
+                    <i className="bi bi-search"></i>
+                </span> 
+                <input type="email" className="form-control" placeholder="Search" aria-label="Search" value={value || ""}
+                    onChange={e => { setValue(e.target.value); onChange(e.target.value);}}/>
+            </div>
+		</form>
+    </>
     )
   }
 
@@ -58,7 +52,6 @@ const Tables = ({columns,data}) => {
         getTableProps,
         getTableBodyProps,
         headerGroups,
-        rows,
         prepareRow,
         setGlobalFilter,
         canPreviousPage,
@@ -96,40 +89,37 @@ const Tables = ({columns,data}) => {
           });
     return (
         <>
+        <div className="container-fluid">
+				<main className="py-6 bg-surface-secondary">
+					<div className="container-fluid" >
+						<div className="card" style={{marginLeft: '-20px'}}>
+
+                            
         <div className="card-header border-bottom">
             <h6 className="mb-0">
-                Show <select className="form-select form-select-sm"
-                    style={{width: 'auto' , height: 'auto' , display: 'inline'}}>
-                    <option className="dropdown-item" data-bs-toggle="tab" value="10">10</option>
-                    <option className="dropdown-item" data-bs-toggle="tab" value="20">20</option>
-                    <option className="dropdown-item" data-bs-toggle="tab" value="30">30</option>
+                Show <select className="form-select form-select-sm" style={{width: 'auto' , height: 'auto' , display: 'inline'}} 
+                    value={pageSize} onChange={e => { setPageSize(Number(e.target.value)) }} >
+                    {[2, 3, 4, 5].map(pageSize => ( <option key={pageSize} value={pageSize}> {pageSize}</option> ))}
+                    
+                    <option value={pageCount * pageSize}>All</option>
                 </select> entries
+                
                 <GlobalFilter preGlobalFilteredRows={preGlobalFilteredRows}globalFilter={state.globalFilter}setGlobalFilter={setGlobalFilter}/>
             </h6>
         </div>
         <div className="table-responsive">
-      
-    <pre>
-        <code>
-          {JSON.stringify(
-            {
-              pageIndex,
-              pageSize,
-              pageCount,
-              canNextPage,
-              canPreviousPage,
-            },
-            null,
-            2
-          )}
-        </code>
-      </pre>
         <table className="table table-hover table-nowrap table-sm" {...getTableProps()}>
           <thead className="table-light">
             {headerGroups.map((headerGroup) => (
                 <tr {...headerGroup.getHeaderGroupProps()}>
                 {headerGroup.headers.map((column) => (
-                  <th scope="col" {...column.getHeaderProps((column.getSortByToggleProps()))}>{column.render("Header")}</th>
+                  <th scope="col" {...column.getHeaderProps((column.getSortByToggleProps()))}>{column.render("Header")}
+                    {/* {column.id !== 'selection' ? (
+                       <> 
+                      {column.isSortedDesc ? '↓' : '↑'}
+                      </>
+                  ) : null} */}
+                  </th>
                 ))}
               </tr>
             ))}
@@ -174,7 +164,7 @@ const Tables = ({columns,data}) => {
         <span>
           | Go to page:{' '}
           <input
-            type="number"
+            type="number" 
             defaultValue={pageIndex + 1}
             onChange={e => {
               const page = e.target.value ? Number(e.target.value) - 1 : 0
@@ -183,24 +173,15 @@ const Tables = ({columns,data}) => {
             style={{ width: '100px' }}
           />
         </span>{' '}
-        <select
-          value={pageSize}
-          onChange={e => {
-            setPageSize(Number(e.target.value))
-          }}
-        >
-          {[2, 3, 4, 5, 6].map(pageSize => (
-            <option key={pageSize} value={pageSize}>
-                {pageSize}
-            </option>
-          ))}
-        </select>
       </div>
       <div className="card-footer border-0 py-5">
-            <span className="text-muted text-sm">Showing 10 items out of 250 results found</span>
+            <span className="text-muted text-sm">Showing {pageSize} items {pageCount * pageSize} results found</span>
         </div>
-    
     </div>
+    </div>
+					</div>
+				</main>
+			</div> 
     </>
     );
 

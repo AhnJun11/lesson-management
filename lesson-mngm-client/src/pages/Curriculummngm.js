@@ -45,15 +45,7 @@ const Curriculummngm = () => {
     return (
         <>
             <BodyHeader title={'커리큘럼 관리'}/>
-             <div className="container-fluid">
-				<main className="py-6 bg-surface-secondary">
-					<div className="container-fluid" >
-						<div className="card" style={{marginLeft: '-20px'}}>
-                            <Tables columns={columns} data={data}/>  
-						</div>
-					</div>
-				</main>
-			</div> 
+            <Tables columns={columns} data={data}/>  			
         </>
     );
 };
